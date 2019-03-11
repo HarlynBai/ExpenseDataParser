@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Linq;
 using Xunit;
 
 namespace Serko.ExpenseDataParser.xUnitTests
@@ -7,7 +8,6 @@ namespace Serko.ExpenseDataParser.xUnitTests
     {
         //list of test cases:
         //1. When a text block is passed in, then an object that includes all the XML content is returned.
-        //1.1 When a text block is passed in, then an XDocument object is returned.
         //1.2 When a text block is passed in, 
         //    then the returned XDocument object has a root Node 'SerKo.ExpenseData'.
         //1.3 When a text block is passed in, 
@@ -17,5 +17,15 @@ namespace Serko.ExpenseDataParser.xUnitTests
         //4. When ‘cost_centre’ node is missing, then a ‘cost_centre’ node is added with value ‘UNKNOWN’.
         //5. When there is no "total" node in the XML, then an error is returned.
         //6. When 'total' node found, then ‘GST' and ‘total excluding GST’ node is added into the return.
+        [Fact]
+        public void WhenATextBlockIsPastInThenAXDocumentIsReturned()
+        {
+            string textBlock = "could be anything";
+            var dataParser = new ExpenseDataParser();
+            // Action
+            var ret = dataParser.Parse(textBlock);
+            // Expectation
+            Assert.IsType<XDocument>(ret);
+        }
     }
 }

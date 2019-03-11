@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serko.ExpenseDataParser", "Serko.ExpenseDataParser\Serko.ExpenseDataParser.csproj", "{90B2B7C2-A328-49FE-B548-2CBFC15930AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90B2B7C2-A328-49FE-B548-2CBFC15930AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B2B7C2-A328-49FE-B548-2CBFC15930AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B2B7C2-A328-49FE-B548-2CBFC15930AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B2B7C2-A328-49FE-B548-2CBFC15930AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C25690C7-4E62-42F7-8A43-37E3BB499E31}
+	EndGlobalSection
+EndGlobal

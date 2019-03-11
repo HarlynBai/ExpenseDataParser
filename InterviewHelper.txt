@@ -1,0 +1,43 @@
+This file will be updated along with each code commit to provide background information 
+about how the code is written and how design decisions are made. 
+So hopefully, it will be a good assistant for the interview process.
+
+Development environment:
+Windos 10 Pro
+VS Professional 2017 v15.9.8
+TortoiseGit 2.8.0.0
+Git Version 2.21.0
+
+My coding guideline:
+1. Using TDD.
+2. Follow SOLID principles.
+3. For the sake of Continuous Integration, use Trunk Based Development and Short-Lived Feature Branches.
+4. Follow YAGNI principle when possible.
+5. For non-critical situations prefer contract programming over defensive programming.
+(In order to communicate techniques that could be applied in real life projects, 
+some parts of the project will be over-engineered deliberately.)
+
+Basic design decisions based on the requirement:
+1. Build an ExpenseDataParser object that accepts a text block as input, 
+extracts the XML content from the text block and do some post data processing, 
+subsequently return an object that includes all the XML content as output.
+2. Build a REST API that provides the expense data parsing service via ExpenseDataParser.
+3. Using Dependency Injection to ease testing, support cross-team development, and drive the design.
+4. Consider Decorator Pattern for the data parser.
+5. Consider using Interpreter Pattern, Regex, or Keyword dictionary for the XML data extraction.
+
+Turn the specification document into an ordered requirements/tests list:
+ExpenseDataParser:
+1. When a text block is passed in, then an object that includes all the XML content is returned.
+2. When there is a missing closing XML tag in the text block, then an error is returned.
+3. When there is invalid XML in the text block, then an error is returned.
+4. When ‘cost_centre’ node is missing, then a ‘cost_centre’ node is added with value ‘UNKNOWN’.
+5. When there is no "total" node in the XML, then an error is returned.
+6. When 'total' node found, then ‘GST' and ‘total excluding GST’ node is added into the return.
+
+REST API:
+Build a REST get API via ExpenseDataParser.
+
+
+
+

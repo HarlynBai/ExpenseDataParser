@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serko.ExpenseDataParser", "Serko.ExpenseDataParser\Serko.ExpenseDataParser.csproj", "{90B2B7C2-A328-49FE-B548-2CBFC15930AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serko.ExpenseDataParser", "Serko.ExpenseDataParser\Serko.ExpenseDataParser.csproj", "{90B2B7C2-A328-49FE-B548-2CBFC15930AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC5EDCDD-3EA4-47C5-8B4F-E957A78194AA}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DEC3152C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExpenseDataParser", "ExpenseDataParser", "{5ED60C11-63EB-4829-A2D3-B36F675D5FF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serko.ExpenseDataParser.xUnitTests", "Serko.ExpenseDataParser.xUnitTests\Serko.ExpenseDataParser.xUnitTests.csproj", "{21217F81-ACA5-4D37-8A42-C3C41D400ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serko.ExpenseDataParser.xUnitTests", "Serko.ExpenseDataParser.xUnitTests\Serko.ExpenseDataParser.xUnitTests.csproj", "{21217F81-ACA5-4D37-8A42-C3C41D400ADD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serko.ExpenseDataParser.Abstractions", "Serko.ExpenseDataParser.Abstractions\Serko.ExpenseDataParser.Abstractions.csproj", "{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{21217F81-ACA5-4D37-8A42-C3C41D400ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21217F81-ACA5-4D37-8A42-C3C41D400ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21217F81-ACA5-4D37-8A42-C3C41D400ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{90B2B7C2-A328-49FE-B548-2CBFC15930AA} = {5ED60C11-63EB-4829-A2D3-B36F675D5FF2}
 		{21217F81-ACA5-4D37-8A42-C3C41D400ADD} = {DEC3152C-12C1-41A7-8D43-0C9F43A1E3E4}
+		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68} = {5ED60C11-63EB-4829-A2D3-B36F675D5FF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C25690C7-4E62-42F7-8A43-37E3BB499E31}

@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Microsoft.Extensions.Logging;
+using Serko.ExpenseDataParser.Abstractions;
 
 namespace Serko.ExpenseDataParser
 {
-    public class ExpenseDataParser
+    public class ExpenseDataParser : IExpenseDataParser
     {
+        private ILogger<ExpenseDataParser> _logger;
+
+        public ExpenseDataParser(ILogger<ExpenseDataParser> logger)
+        {
+            _logger = logger;
+        }
+
         public Result Parse(string textBlock)
         {
             Result result = new Result();
@@ -41,6 +50,7 @@ namespace Serko.ExpenseDataParser
                 {
                     result.Error = true;
                     result.ErrorDetials = $"Misssing closing tag for {tag.ToString()}";
+                    _logger.LogWarning(result.ErrorDetials);
                     return true;
                 }
             }

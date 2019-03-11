@@ -72,3 +72,7 @@ Only resort to other methods, when more complex requirement emerges.
 that includes Error:bool, ErrorDetials:string, and ExpenseData:XDocument properties. 
 Update all previous tests and make them pass. Write the simplest implementation to pass the current test. 
 Refactor the XML tag checking code into a private function called ClosingTagIsMissing.
+
+7. At this point, I want to do some logging to record the failure. Logging usually could be 
+added right at the start of the project, but I use this to demonstrate the YAGNI and LRM principles. 
+While adding logging, I keep in mind that I decided to use DI and constructor injection when possible.

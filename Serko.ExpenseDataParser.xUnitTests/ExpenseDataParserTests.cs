@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+using Moq;
 using System;
 using System.Xml.Linq;
 using Xunit;
@@ -15,7 +17,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
         public void WhenATextBlockIsPastInThenAXDocumentIsReturned()
         {
             string textBlock = "could be anything";
-            var dataParser = new ExpenseDataParser();
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -26,7 +29,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
         public void WhenATextBlockIsPastInThenTheReturnedXDocumentContainsARootNodeNamedSerKoDotExpenseData()
         {
             string textBlock = "could be andything";
-            var dataParser = new ExpenseDataParser();
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -44,8 +48,11 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                 the second part:
                                 <XMLComponent2><bar>cat</bar></XMLComponent2>";
 
-            var dataParser = new ExpenseDataParser();
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            // Action
             var ret = dataParser.Parse(textBlock);
+            // Expectation
             var nodeDog = ret.ExpenseData.Root.Element("XMLComponent1").Element("foo").Value;
             var nodeCat = ret.ExpenseData.Root.Element("XMLComponent2").Element("bar").Value;
             Assert.Equal("dog", nodeDog);
@@ -61,8 +68,11 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     <XMLTag2>
                                     </XMLTag2>
                                 </XMLTag1>";
-            var dataParser = new ExpenseDataParser();
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            // Action
             var ret = dataParser.Parse(textBlock);
+            // Expectation
             Assert.True(ret.Error);
         }
     }

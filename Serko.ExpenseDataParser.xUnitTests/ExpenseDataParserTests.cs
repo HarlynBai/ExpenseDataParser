@@ -8,8 +8,6 @@ namespace Serko.ExpenseDataParser.xUnitTests
     {
         //list of test cases:
         //1. When a text block is passed in, then an object that includes all the XML content is returned.
-        //1.2 When a text block is passed in, 
-        //    then the returned XDocument object has a root Node 'SerKo.ExpenseData'.
         //1.3 When a text block is passed in, 
         //    then the returned XDocument object should include all the XML content from the text block.
         //2. When there is a missing closing XML tag in the text block, then an error is returned.
@@ -27,5 +25,17 @@ namespace Serko.ExpenseDataParser.xUnitTests
             // Expectation
             Assert.IsType<XDocument>(ret);
         }
+
+        [Fact]
+        public void WhenATextBlockIsPastInThenTheReturnedXDocumentContainsARootNodeNamedSerKoDotExpenseData()
+        {
+            string textBlock = "could be andything";
+            var dataParser = new ExpenseDataParser();
+            // Action
+            var doc = dataParser.Parse(textBlock);
+            // Expectation
+            Assert.Equal("SerKo.ExpenseData", doc.Root.Name);
+        }
+
     }
 }

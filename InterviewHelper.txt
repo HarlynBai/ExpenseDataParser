@@ -47,3 +47,6 @@ and returns XDocument object.
 
 2. Create ExpenseDataParser class and make it passes the first test case. 
 Writing the unit test with a variant of BDD template, When[Action], Then[Expectation].
+
+3. Write the second test and make the Parse method returns an XDocument object 
+with a root node named ‘SerKo.ExpenseData’.

@@ -7,7 +7,9 @@ namespace Serko.ExpenseDataParser
     {
         public XDocument Parse(string textBlock)
         {
-            return new XDocument();
+            XDocument doc = new XDocument();
+            doc.Add(new XElement("SerKo.ExpenseData"));
+            return doc;
         }
     }
 }

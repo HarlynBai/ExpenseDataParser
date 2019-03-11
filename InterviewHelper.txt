@@ -38,6 +38,9 @@ ExpenseDataParser:
 REST API:
 Build a REST get API via ExpenseDataParser.
 
+=======================================================================================================
 
-
-
+Steps:
+1. Decompose the first requirement into sub test cases. Start from a very easy one to get the ball rolling. 
+I decided the ExpenseDataParser will have a public method called Parse, it takes a string as input 
+and returns XDocument object.

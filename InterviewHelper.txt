@@ -67,3 +67,8 @@ Then we found out, Regex is just good enough for this situation.
 Based on contract programming and YAGNI principle.
 I decided to stick with the current Regex solution. 
 Only resort to other methods, when more complex requirement emerges.
+
+6. Write the closing XML tag checking test. Update the Parse function to return a Result object 
+that includes Error:bool, ErrorDetials:string, and ExpenseData:XDocument properties. 
+Update all previous tests and make them pass. Write the simplest implementation to pass the current test. 
+Refactor the XML tag checking code into a private function called ClosingTagIsMissing.

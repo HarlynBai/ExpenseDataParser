@@ -7,7 +7,6 @@ namespace Serko.ExpenseDataParser.xUnitTests
     public class ExpenseDataParserTests
     {
         //list of test case:
-        //2. When there is a missing closing XML tag in the text block, then an error is returned.
         //3. When there is invalid XML in the text block, then an error is returned.
         //4. When ‘cost_centre’ node is missing, then a ‘cost_centre’ node is added with value ‘UNKNOWN’.
         //5. When there is no "total" node in the XML, then an error is returned.
@@ -20,7 +19,7 @@ namespace Serko.ExpenseDataParser.xUnitTests
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
-            Assert.IsType<XDocument>(ret);
+            Assert.IsType<XDocument>(ret.ExpenseData);
         }
 
         [Fact]
@@ -29,9 +28,9 @@ namespace Serko.ExpenseDataParser.xUnitTests
             string textBlock = "could be andything";
             var dataParser = new ExpenseDataParser();
             // Action
-            var doc = dataParser.Parse(textBlock);
+            var ret = dataParser.Parse(textBlock);
             // Expectation
-            Assert.Equal("SerKo.ExpenseData", doc.Root.Name);
+            Assert.Equal("SerKo.ExpenseData", ret.ExpenseData.Root.Name);
         }
 
         [Fact]
@@ -46,12 +45,25 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                 <XMLComponent2><bar>cat</bar></XMLComponent2>";
 
             var dataParser = new ExpenseDataParser();
-            var doc = dataParser.Parse(textBlock);
-            var nodeDog = doc.Root.Element("XMLComponent1").Element("foo").Value;
-            var nodeCat = doc.Root.Element("XMLComponent2").Element("bar").Value;
+            var ret = dataParser.Parse(textBlock);
+            var nodeDog = ret.ExpenseData.Root.Element("XMLComponent1").Element("foo").Value;
+            var nodeCat = ret.ExpenseData.Root.Element("XMLComponent2").Element("bar").Value;
             Assert.Equal("dog", nodeDog);
             Assert.Equal("cat", nodeCat);
         }
 
+        [Fact]
+        public void WhenAClosingXMLTagIsMissingThenAErrorIsReturned()
+        {
+            string textBlock = @"This is a test block that has a missing closing XML tag
+                                <XMLtag1>
+                                    <XMLTagMissing>
+                                    <XMLTag2>
+                                    </XMLTag2>
+                                </XMLTag1>";
+            var dataParser = new ExpenseDataParser();
+            var ret = dataParser.Parse(textBlock);
+            Assert.True(ret.Error);
+        }
     }
 }

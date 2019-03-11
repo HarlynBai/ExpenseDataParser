@@ -50,3 +50,6 @@ Writing the unit test with a variant of BDD template, When[Action], Then[Expecta
 
 3. Write the second test and make the Parse method returns an XDocument object 
 with a root node named ‘SerKo.ExpenseData’.
+
+4. Write the major unit test for XML extraction, and make it fail,
+then use Regex to quickly get it working.

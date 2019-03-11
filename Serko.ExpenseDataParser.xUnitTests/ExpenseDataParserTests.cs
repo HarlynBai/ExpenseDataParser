@@ -9,7 +9,6 @@ namespace Serko.ExpenseDataParser.xUnitTests
     public class ExpenseDataParserTests
     {
         //list of test case:
-        //3. When there is invalid XML in the text block, then an error is returned.
         //4. When ‘cost_centre’ node is missing, then a ‘cost_centre’ node is added with value ‘UNKNOWN’.
         //5. When there is no "total" node in the XML, then an error is returned.
         //6. When 'total' node found, then ‘GST' and ‘total excluding GST’ node is added into the return.
@@ -63,9 +62,26 @@ namespace Serko.ExpenseDataParser.xUnitTests
         public void WhenAClosingXMLTagIsMissingThenAErrorIsReturned()
         {
             string textBlock = @"This is a test block that has a missing closing XML tag
-                                <XMLtag1>
+                                <XMLTag1>
                                     <XMLTagMissing>
                                     <XMLTag2>
+                                    </XMLTag2>
+                                </XMLTag1>";
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            // Action
+            var ret = dataParser.Parse(textBlock);
+            // Expectation
+            Assert.True(ret.Error);
+        }
+
+        [Fact]
+        public void WhenAInvalidXMLBlockIsFoundThenReturnAnError()
+        {
+            string textBlock = @"This is a invalid XML block that has a invailid XML characters
+                                <XMLTag1>
+                                    <XMLTag2>
+                                    '&>
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();

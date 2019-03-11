@@ -34,7 +34,17 @@ namespace Serko.ExpenseDataParser
             var XMLBlocks = Regex.Matches(textBlock, @"<(.+?)>[\d\D]*</\1>");
             foreach (Match XMLblock in XMLBlocks)
             {
-                doc.Root.Add(XDocument.Parse(XMLblock.ToString()).Root);
+                try
+                {
+                    doc.Root.Add(XDocument.Parse(XMLblock.ToString()).Root);
+                }
+                catch(Exception)
+                {
+                    result.Error = true;
+                    result.ErrorDetials = $"Invailid XML block: {XMLblock.ToString()}";
+                    _logger.LogWarning(result.ErrorDetials);
+                    return result;
+                }
             }
             result.Error = false;
             result.ExpenseData = doc;

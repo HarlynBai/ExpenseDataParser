@@ -53,3 +53,17 @@ with a root node named ‘SerKo.ExpenseData’.
 
 4. Write the major unit test for XML extraction, and make it fail,
 then use Regex to quickly get it working.
+
+5. Thoughts on code refactoring:  
+We were considering to use Interpreter, Regex, or Keyword dictionary for the data extraction function.
+Regex is well known for having issues with tree structure matching. 
+Interpreter pattern could be a reliable solution, but it is also complex and costly. 
+Using a keyword dictionary requires a finite set of keywords that could be used to extract data.
+For the imaginary project, I will make a few assumptions:
+1. Creating a keyword dictionary is not feasible for the business. 
+2. There will no XML node with the same name in one text block, and the short XML format, <xxx/>, will not be used.
+Based on the above assumptions, we first rule out the keyword dictionary approach. 
+Then we found out, Regex is just good enough for this situation. 
+Based on contract programming and YAGNI principle.
+I decided to stick with the current Regex solution. 
+Only resort to other methods, when more complex requirement emerges.

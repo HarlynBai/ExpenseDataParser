@@ -8,7 +8,7 @@ namespace Serko.ExpenseDataParser.Common
     {
         public static bool FindFirstXElementByName(this XDocument doc, string name, out XElement xElement)
         {
-            var xElements = doc.Descendants().Where(element => element.Name.LocalName == name);
+            var xElements = doc.Descendants().Where(element => string.Equals(element.Name.LocalName, name, StringComparison.OrdinalIgnoreCase));
             if (0 == xElements.Count())
             {
                 xElement = null;

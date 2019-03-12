@@ -87,3 +87,6 @@ Get the test past, but found out four previous test cases were broken due to the
 <Total> node in those tests.
 
 11. Refactor the code using a variant of the Decorator pattern.
+
+12. Quickly implemented the GST calculation. And noticed there is a magic number 0.05 for the GST rate. 
+Going to do some code refactoring on this.

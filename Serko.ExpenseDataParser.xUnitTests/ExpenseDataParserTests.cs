@@ -11,8 +11,6 @@ namespace Serko.ExpenseDataParser.xUnitTests
 {
     public class ExpenseDataParserTests
     {
-        //list of test case:
-        //6. When 'total' node found, then ‘GST' and ‘total excluding GST’ node is added into the return.
         [Fact]
         public void WhenATextBlockIsPastInThenAXDocumentIsReturned()
         {
@@ -131,6 +129,24 @@ namespace Serko.ExpenseDataParser.xUnitTests
             // Expectation
             Assert.True(ret.Error);
         }
-
+        [Fact]
+        public void WhenTotalNodeFoundThenAddGSTAndTotalExcludingGSTNode()
+        {
+            string textBlock = @"Hi Yvaine,
+Please create an expense claim for the below. Relevant details are marked up as requested…
+<expense><cost_centre>DEV002</cost_centre> <total>1024.01</total><payment_method>personal card</payment_method> </expense>
+From: Ivan Castle Sent: Friday, 16 February 2018 10:32 AM To: Antoine Lloyd Antoine.Lloyd@example.com Subject: test
+Hi Antoine,
+Please create a reservation at the <vendor>Viaduct Steakhouse</vendor> our <description>development team’s project end celebration dinner</description> on <date>Tuesday 27 April 2017</date>. We expect to arrive around 7.15pm. Approximately 12 people but I’ll confirm exact numbers closer to the day.
+Regards,
+Ivan";
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(new CostCentreNodeDecorator(null)));
+            // Action
+            var ret = dataParser.Parse(textBlock);
+            // Expectation
+            Assert.True(ret.ExpenseData.XElementExists("GST"));
+            Assert.True(ret.ExpenseData.XElementExists("TotalExcludingGST"));
+        }
     }
 }

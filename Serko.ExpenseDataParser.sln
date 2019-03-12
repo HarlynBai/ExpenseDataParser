@@ -18,6 +18,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serko.ExpenseDataParser.xUn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serko.ExpenseDataParser.Abstractions", "Serko.ExpenseDataParser.Abstractions\Serko.ExpenseDataParser.Abstractions.csproj", "{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1D8C466C-44C9-43F5-B62E-7BE91C085A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serko.ExpenseDataParser.Common", "Serko.ExpenseDataParser.Common\Serko.ExpenseDataParser.Common.csproj", "{AF1D18D3-D041-4767-A80D-6AD24CBF3403}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,10 @@ Global
 		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1D18D3-D041-4767-A80D-6AD24CBF3403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1D18D3-D041-4767-A80D-6AD24CBF3403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1D18D3-D041-4767-A80D-6AD24CBF3403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1D18D3-D041-4767-A80D-6AD24CBF3403}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{90B2B7C2-A328-49FE-B548-2CBFC15930AA} = {5ED60C11-63EB-4829-A2D3-B36F675D5FF2}
 		{21217F81-ACA5-4D37-8A42-C3C41D400ADD} = {DEC3152C-12C1-41A7-8D43-0C9F43A1E3E4}
 		{D839A5D4-8EB8-46D7-AD82-FF64B6753D68} = {5ED60C11-63EB-4829-A2D3-B36F675D5FF2}
+		{AF1D18D3-D041-4767-A80D-6AD24CBF3403} = {1D8C466C-44C9-43F5-B62E-7BE91C085A9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C25690C7-4E62-42F7-8A43-37E3BB499E31}

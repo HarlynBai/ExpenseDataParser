@@ -79,3 +79,5 @@ While adding logging, I keep in mind that I decided to use DI and constructor in
 
 8. Complete the invalid XML checking test. Simply implement it by catching exceptions around XDocument.Parse. 
 Allow all other exceptions thrown (fail-fast system).
+
+9. Added the test case for Cost_centre node, and did some minor refactoring.

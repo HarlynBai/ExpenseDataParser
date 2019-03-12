@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using Serko.ExpenseDataParser.Abstractions;
+using Serko.ExpenseDataParser.Common;
 
 namespace Serko.ExpenseDataParser
 {
@@ -46,6 +48,12 @@ namespace Serko.ExpenseDataParser
                     return result;
                 }
             }
+
+            if(!doc.XElementExists("Cost_centre"))
+            {
+                doc.Root.Add(new XElement("Cost_centre", "UNKNOWN"));
+            }
+
             result.Error = false;
             result.ExpenseData = doc;
             return result;

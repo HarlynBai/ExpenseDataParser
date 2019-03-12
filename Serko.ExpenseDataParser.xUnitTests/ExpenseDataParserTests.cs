@@ -1,15 +1,16 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
+using System.Linq;
 using System.Xml.Linq;
 using Xunit;
+using Serko.ExpenseDataParser.Common;
 
 namespace Serko.ExpenseDataParser.xUnitTests
 {
     public class ExpenseDataParserTests
     {
         //list of test case:
-        //4. When ‘cost_centre’ node is missing, then a ‘cost_centre’ node is added with value ‘UNKNOWN’.
         //5. When there is no "total" node in the XML, then an error is returned.
         //6. When 'total' node found, then ‘GST' and ‘total excluding GST’ node is added into the return.
         [Fact]
@@ -90,6 +91,24 @@ namespace Serko.ExpenseDataParser.xUnitTests
             var ret = dataParser.Parse(textBlock);
             // Expectation
             Assert.True(ret.Error);
+        }
+
+        [Fact]
+        public void WhenThereIsNoCost_centreNodeThenACost_centreNodeIsAddedWithValueUnknown()
+        {
+            string textBlock = @"This is a XML block without Cost_centre Node
+                                <XMLTag1>
+                                    <XMLTag2>
+                                    </XMLTag2>
+                                </XMLTag1>";
+            var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            // Action
+            var ret = dataParser.Parse(textBlock);
+            // Expectation
+            XElement xElement;
+            ret.ExpenseData.FindFirstXElementByName("Cost_centre", out xElement);
+            Assert.Equal("UNKNOWN", xElement.Value);
         }
     }
 }

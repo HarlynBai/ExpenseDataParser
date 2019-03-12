@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Xunit;
 using Serko.ExpenseDataParser.Common;
+using Serko.ExpenseDataParser.Abstractions;
 
 namespace Serko.ExpenseDataParser.xUnitTests
 {
@@ -17,7 +18,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
         {
             string textBlock = "could be anything";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var mockResultDecorator = new Mock<IResultDecorator>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, mockResultDecorator.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -29,7 +31,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
         {
             string textBlock = "could be andything";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var mockResultDecorator = new Mock<IResultDecorator>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, mockResultDecorator.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -48,7 +51,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                 <XMLComponent2><bar>cat</bar></XMLComponent2>";
 
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var mockResultDecorator = new Mock<IResultDecorator>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, mockResultDecorator.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -68,7 +72,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var mockResultDecorator = new Mock<IResultDecorator>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, mockResultDecorator.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -85,7 +90,8 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var mockResultDecorator = new Mock<IResultDecorator>();
+            var dataParser = new ExpenseDataParser(mockLogger.Object, mockResultDecorator.Object);
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -101,7 +107,7 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var dataParser = new ExpenseDataParser(mockLogger.Object, new CostCentreNodeDecorator(null));
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -119,7 +125,7 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object);
+            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(null));
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation

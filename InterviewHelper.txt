@@ -85,3 +85,5 @@ Allow all other exceptions thrown (fail-fast system).
 10. Added the <Total> node test and quickly implemented the solution. 
 Get the test past, but found out four previous test cases were broken due to there is no 
 <Total> node in those tests.
+
+11. Refactor the code using a variant of the Decorator pattern.

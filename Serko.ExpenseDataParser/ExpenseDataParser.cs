@@ -11,13 +11,24 @@ namespace Serko.ExpenseDataParser
     public class ExpenseDataParser : IExpenseDataParser
     {
         private ILogger<ExpenseDataParser> _logger;
+        private IResultDecorator _resultDecorator;
 
-        public ExpenseDataParser(ILogger<ExpenseDataParser> logger)
+        public ExpenseDataParser(ILogger<ExpenseDataParser> logger, IResultDecorator resultDecorator)
         {
             _logger = logger;
+            _resultDecorator = resultDecorator;
         }
 
         public Result Parse(string textBlock)
+        {
+            Result result = ExtractXML(textBlock);
+            if (!result.Error)
+            {
+                _resultDecorator.Process(ref result);
+            }
+            return result;
+        }
+        private Result ExtractXML(string textBlock)
         {
             Result result = new Result();
             if (ClosingTagIsMissing(textBlock, ref result))
@@ -40,7 +51,7 @@ namespace Serko.ExpenseDataParser
                 {
                     doc.Root.Add(XDocument.Parse(XMLblock.ToString()).Root);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     result.Error = true;
                     result.ErrorDetials = $"Invailid XML block: {XMLblock.ToString()}";
@@ -49,17 +60,6 @@ namespace Serko.ExpenseDataParser
                 }
             }
 
-            if(!doc.XElementExists("Cost_centre"))
-            {
-                doc.Root.Add(new XElement("Cost_centre", "UNKNOWN"));
-            }
-
-            if(!doc.XElementExists("Total"))
-            {
-                result.Error = true;
-                result.ErrorDetials = $"Missing <Total> from the {doc.ToString()}";
-                return result;
-            }
             result.Error = false;
             result.ExpenseData = doc;
             return result;

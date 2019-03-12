@@ -105,3 +105,18 @@ and plug Dependency Injection into our system.
 “GET api/ExpenseData”. One could test it via postman by setting the body 
 type as raw and choosing JSON format, then put the test data into the body and send the request.
 
+15. The last step, I draw a UML class diagram, SerkoExpenseDataParser.png, to recheck the code structure.
+Two things are noticed:
+1. ExpenseDataParser also depends on the IResultDecorator. We could remove this dependency by creating
+a base class of ExpenseDataParser within the abstraction assembly. And let this base class implements 
+a template method, that supports the extracting data, then processing data procedure.
+2. Result class could inherit from an IResult interface, and let the concrete classes to decide 
+what Result class they need. Following YAGNI and LRM, I'll leave the code as it is now. 
+ 
+Notes: 
+1. An integration test project could be added to support the API tests, but to make it work 
+that usually requires some configuration and setup process. 
+For the simplicity of the interview project, I'll skip that part.
+2. Considering the method, IGSTRateProvider.getGSTRate(), could actually be supported 
+by a web service or database, making the method async is a reasonable design decision. 
+Same as before following LRM, YAGNI principles. I could live with it until the change is actually required.

@@ -18,22 +18,20 @@ namespace Serko.ExpenseDataParser
 
         public override void Process(ref Result result)
         {
-            XElement xElement;
-            bool found = result.ExpenseData.FindFirstXElementByName("Total", out xElement);
+            bool found = result.ExpenseData.FindFirstXElementByName("Total", out XElement xElement);
             if (!found)
             {
                 result.Error = true;
-                result.ErrorDetials = $"Missing <Total> from the {result.ExpenseData.ToString()}";
+                result.ErrorDetials = "Missing <Total> from the intput text.";
                 return;
             }
             else
             {
-                decimal total;
-                if(decimal.TryParse(xElement.Value, out total))
+                if (decimal.TryParse(xElement.Value, out decimal total))
                 {
                     decimal GSTRate = _GSTRateProvider.getGSTRate();
                     xElement.Add(new XElement("GST", total * GSTRate));
-                    xElement.Add(new XElement("TotalExcludingGST", total * (1- GSTRate)));
+                    xElement.Add(new XElement("TotalExcludingGST", total * (1 - GSTRate)));
                 }
 
                 base.Process(ref result);

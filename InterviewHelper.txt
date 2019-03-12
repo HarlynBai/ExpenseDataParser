@@ -100,3 +100,8 @@ There could be a lot more for covering corner cases.
 However I’ll stop here, so we don’t end up too much code for the interview.
 Next step I’ll build up the REST API using our newly created ExpenseDataParser 
 and plug Dependency Injection into our system.
+
+14. At this stage, I have set up DI configuration and added a REST API, 
+“GET api/ExpenseData”. One could test it via postman by setting the body 
+type as raw and choosing JSON format, then put the test data into the body and send the request.
+

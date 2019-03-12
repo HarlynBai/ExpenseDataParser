@@ -110,8 +110,7 @@ namespace Serko.ExpenseDataParser.xUnitTests
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
-            XElement xElement;
-            ret.ExpenseData.FindFirstXElementByName("Cost_centre", out xElement);
+            ret.ExpenseData.FindFirstXElementByName("Cost_centre", out XElement xElement);
             Assert.Equal("UNKNOWN", xElement.Value);
         }
 

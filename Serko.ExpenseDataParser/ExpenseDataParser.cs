@@ -26,6 +26,12 @@ namespace Serko.ExpenseDataParser
             {
                 _resultDecorator.Process(ref result);
             }
+
+            if(result.Error)
+            {
+                _logger.LogWarning(result.ErrorDetials);
+            }
+
             return result;
         }
         private Result ExtractXML(string textBlock)

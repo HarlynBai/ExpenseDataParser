@@ -54,6 +54,12 @@ namespace Serko.ExpenseDataParser
                 doc.Root.Add(new XElement("Cost_centre", "UNKNOWN"));
             }
 
+            if(!doc.XElementExists("Total"))
+            {
+                result.Error = true;
+                result.ErrorDetials = $"Missing <Total> from the {doc.ToString()}";
+                return result;
+            }
             result.Error = false;
             result.ExpenseData = doc;
             return result;

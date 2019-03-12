@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Serko.ExpenseDataParser.Abstractions\Serko.ExpenseDataParser.Abstractions.csproj" />
     <ProjectReference Include="..\Serko.ExpenseDataParser\Serko.ExpenseDataParser.csproj" />
+    <ProjectReference Include="..\Serko.GSTRate.Abstractions\Serko.GSTRate.Abstractions.csproj" />
+    <ProjectReference Include="..\Serko.GSTRate\Serko.GSTRate.csproj" />
   </ItemGroup>
 
 </Project>

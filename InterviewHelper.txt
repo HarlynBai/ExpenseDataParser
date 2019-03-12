@@ -90,3 +90,13 @@ Get the test past, but found out four previous test cases were broken due to the
 
 12. Quickly implemented the GST calculation. And noticed there is a magic number 0.05 for the GST rate. 
 Going to do some code refactoring on this.
+
+13. Refactored the code to get GST rate from a GST provider, which internally could talk to a web service, 
+read a database, or do some complex calculation. However, for the simplicity of this task, 
+I make it return a GST rate of 0.05 directly. 
+
+So far we have finished the initial test cases for the ExpenseDataParser. 
+There could be a lot more for covering corner cases. 
+However I’ll stop here, so we don’t end up too much code for the interview.
+Next step I’ll build up the REST API using our newly created ExpenseDataParser 
+and plug Dependency Injection into our system.

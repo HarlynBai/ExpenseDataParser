@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Xunit;
 using Serko.ExpenseDataParser.Common;
 using Serko.ExpenseDataParser.Abstractions;
+using Serko.GSTRate;
 
 namespace Serko.ExpenseDataParser.xUnitTests
 {
@@ -123,7 +124,7 @@ namespace Serko.ExpenseDataParser.xUnitTests
                                     </XMLTag2>
                                 </XMLTag1>";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(null));
+            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(null, new GSTRateProvider()));
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation
@@ -141,7 +142,7 @@ Please create a reservation at the <vendor>Viaduct Steakhouse</vendor> our <desc
 Regards,
 Ivan";
             var mockLogger = new Mock<ILogger<ExpenseDataParser>>();
-            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(new CostCentreNodeDecorator(null)));
+            var dataParser = new ExpenseDataParser(mockLogger.Object, new TotalNodeDecorator(new CostCentreNodeDecorator(null), new GSTRateProvider()));
             // Action
             var ret = dataParser.Parse(textBlock);
             // Expectation

@@ -4,14 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using Serko.GSTRate.Abstractions;
 
 namespace Serko.ExpenseDataParser
 {
     public class TotalNodeDecorator : ResultDecorator
     {
-        private readonly decimal _GSTRate = 0.05M;
-        public TotalNodeDecorator(IResultDecorator resultDecorator) : base(resultDecorator)
+        private IGSTRateProvider _GSTRateProvider;
+        public TotalNodeDecorator(IResultDecorator resultDecorator, IGSTRateProvider GSTRateProvider) : base(resultDecorator)
         {
+            _GSTRateProvider = GSTRateProvider;
         }
 
         public override void Process(ref Result result)
@@ -29,8 +31,9 @@ namespace Serko.ExpenseDataParser
                 decimal total;
                 if(decimal.TryParse(xElement.Value, out total))
                 {
-                    xElement.Add(new XElement("GST", total * _GSTRate));
-                    xElement.Add(new XElement("TotalExcludingGST", total * (1-_GSTRate)));
+                    decimal GSTRate = _GSTRateProvider.getGSTRate();
+                    xElement.Add(new XElement("GST", total * GSTRate));
+                    xElement.Add(new XElement("TotalExcludingGST", total * (1- GSTRate)));
                 }
 
                 base.Process(ref result);

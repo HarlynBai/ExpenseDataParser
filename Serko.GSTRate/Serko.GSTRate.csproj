@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Serko.ExpenseDataParser.Abstractions\Serko.ExpenseDataParser.Abstractions.csproj" />
-    <ProjectReference Include="..\Serko.ExpenseDataParser.Common\Serko.ExpenseDataParser.Common.csproj" />
     <ProjectReference Include="..\Serko.GSTRate.Abstractions\Serko.GSTRate.Abstractions.csproj" />
   </ItemGroup>
 
